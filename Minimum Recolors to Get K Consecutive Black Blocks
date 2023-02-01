@@ -1,0 +1,12 @@
+class Solution:
+    def minimumRecolors(self, blocks: str, k: int) -> int:
+        lst = list(blocks)
+        mini = k
+        
+        i = 0
+        while i+k <= len(lst):
+            blacks = lst[i:i+k].count('B')
+            mini = min(mini,(k-blacks))
+            i += 1
+        
+        return mini
