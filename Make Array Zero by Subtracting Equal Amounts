@@ -1,0 +1,14 @@
+class Solution:
+    def minimumOperations(self, nums: List[int]) -> int:
+        sorted_nums = sorted(list(set(nums)))
+        count = 0
+
+        i = 0
+        while i < len(sorted_nums):
+            if sorted_nums[i] > 0:
+                for j in range(i+1,len(sorted_nums)):
+                    sorted_nums[j] = sorted_nums[j] - sorted_nums[i]
+                count += 1
+            i += 1
+
+        return count
