@@ -1,0 +1,30 @@
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        
+        def isPali(string: str) -> bool:
+            i = 0
+            j = len(string)-1
+            while i < j:
+                if string[i] != string[j]:
+                    return False
+                i += 1
+                j -= 1
+            
+            return True
+
+
+        i = 0
+        j = len(s)-1
+        while i < j:
+            if s[i] != s[j]:
+                if isPali(s[i:j]):
+                    return True
+                elif isPali(s[i+1:j+1]):
+                    return True
+                else:
+                    return False
+
+            i += 1
+            j -= 1
+        
+        return True
