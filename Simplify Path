@@ -1,0 +1,46 @@
+class Stack:
+    def __init__(self):
+        self.stack = []
+    
+    def __str__(self):
+        return f"{self.stack}"
+
+    def push(self, x):
+        self.stack.append(x)
+    
+    def pop(self):
+        if self.stack:
+            return self.stack.pop()
+
+    def peek(self):
+        if self.stack:
+            return self.stack[-1]
+
+    def isEmpty(self):
+        if len(self.stack) == 0:
+            return True
+        else:
+            return False 
+            
+    def listStack(self):
+        return list(self.stack)
+
+    
+
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        stack = Stack()
+        temp = ""
+
+        for p in path + "/":
+            if p == "/":
+                if temp == "..":
+                    if not stack.isEmpty():
+                        stack.pop()
+                elif temp != "" and temp != ".":
+                    stack.push(temp)
+                temp = ""
+            else:
+                temp += p
+        
+        return "/" + "/".join(stack.listStack())
