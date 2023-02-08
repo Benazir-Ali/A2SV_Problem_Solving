@@ -1,0 +1,34 @@
+class Solution:
+    def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
+        
+        def place(first, nums):
+            nums += [first]
+            placed.add(first)
+            for i in neighbors[first]:
+                if i not in placed:
+                    place(i, nums)
+            
+        neighbors = {}
+        first = ""
+
+        for x,y in adjacentPairs:
+            if x in neighbors:
+                neighbors[x] += [y]
+            else:
+                neighbors[x] = [y]
+            if y in neighbors:
+                neighbors[y] += [x]
+            else:
+                neighbors[y] = [x]
+
+        for val in neighbors:
+            if len(neighbors[val]) == 1:
+                first = val
+                break
+
+        nums = []
+        placed = set()
+        place(first, nums)
+
+        return nums
+       
