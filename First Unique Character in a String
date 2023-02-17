@@ -1,0 +1,17 @@
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        count_dict = {}
+        
+        for i in range(len(s)):
+            if s[i] in count_dict:
+                count_dict[s[i]] += 1
+            else:
+                count_dict[s[i]] = 1
+            
+        print(count_dict)
+
+        for c in s:
+            if count_dict[c] == 1:
+                return s.index(c)
+
+        return -1
