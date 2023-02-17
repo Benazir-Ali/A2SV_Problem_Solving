@@ -1,0 +1,23 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+
+        stack = []
+        ans = []
+
+        def recur(open_par, close_par):
+            if open_par == close_par == n:
+                ans.append("".join(stack))
+                return
+
+            if open_par < n:
+                stack.append("(")
+                recur(open_par + 1, close_par)
+                stack.pop()
+
+            if close_par < open_par:
+                stack.append(")")
+                recur(open_par, close_par + 1)
+                stack.pop()
+
+        recur(0,0)
+        return ans
