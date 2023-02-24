@@ -1,0 +1,16 @@
+class Solution:
+    def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
+        def isPositive(n):
+            return n > 0
+
+        ans = 0
+
+        while tickets[k] > 1:
+            ans += sum(isPositive(x) for x in tickets)
+            for i in range(len(tickets)):
+                tickets[i] -= 1
+
+        ans += sum(isPositive(x) for x in tickets[:k]) + 1
+
+        return ans
+            
